@@ -3,18 +3,12 @@ import { db } from '@/index';
 import { Contact, contacts } from '@/db/schema';
 
 
-
-
-export async function OPTIONS() {
-    return NextResponse.json({});
-}
-
 export async function POST(req: Request) {
     try {
         const body: Contact = await req.json();
 
         //TODO: zod valid gelecek
-
+        console.log("Veri geldi: ", body);
         const record = await db.insert(contacts).values({
             fullName: body.fullName,
             email: body.email,
